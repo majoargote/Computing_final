@@ -18,6 +18,12 @@ python train_model.py
 
 ## Run the API
 
+Before running the API you must run:
+
+```
+python -m wine_predict.pipeline
+```
+
 Start the FastAPI server (from the project root):
 
 ```
