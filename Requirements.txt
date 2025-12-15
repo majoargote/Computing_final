@@ -1,18 +1,14 @@
-[wine_predict_classification]
-name = "computing-final"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.11"
-dependencies = [
-    "abstract>=2025.2.17.0",
-    "asttokens>=3.0.1",
-    "base>=0.0.0",
-    "matplotlib>=3.10.8",
-    "numpy>=2.3.5",
-    "pandas>=2.3.3",
-    "pytest>=9.0.2",
-    "scikit-learn>=1.8.0",
-    "seaborn>=0.13.2",
-    "setuptools>=80.9.0",
-]
+matplotlib>=3.10.8
+numpy>=2.3.5
+pandas>=2.3.3
+pytest>=9.0.2
+scikit-learn>=1.8.0
+seaborn>=0.13.2
+fastapi>=0.115.0
+uvicorn>=0.34.0
+pydantic>=2.10.0
+joblib>=1.4.0
+python-multipart>=0.0.20
+
+requests>=2.31.0
+
