@@ -1,10 +1,13 @@
 import pandas as pd
+from pathlib import Path
 
 #define into three classes, per the data in the csv
 
-def load_wine_data(data_path='data/WineQT.csv'):
-    
-    df = pd.read_csv(data_path)
+def load_wine_data(data_path=None):
+    base = Path(__file__).resolve().parent  # folder containing data_loader.py
+    csv_path = base / "data" / "WineQT.csv" if data_path is None else Path(data_path)
+
+    df = pd.read_csv(csv_path)
     
     # Drop non-features
     if 'Id' in df.columns:
