@@ -1,0 +1,174 @@
+---
+title: "End-to-End Wine Quality Pipeline — Team Overview & Onboarding"
+format:
+  revealjs:
+    transition: slide
+    theme: simple
+    navigation-mode: linear
+    controls: true
+    progress: true
+---
+
+# End-to-End Wine Quality Pipeline
+
+---
+
+## Agenda
+
+- Quick context & goals
+- Pipeline walkthrough (data → model → serving)
+- Library architecture & branches (how we organised code)
+- Team organisation & contribution workflow
+- Onboarding steps for a new member (what to do first)
+- Q&A / Next steps
+
+---
+
+## Context & Goals
+
+- Project: Wine quality prediction model that can be trained locally and served via FastAPI for single/batch predictions.
+- Goals for presentation:
+  - Demonstrate the end-to-end pipeline and where to contribute.
+  - Explain repository organisation and branch usage.
+  - Give a reproducible onboarding checklist for new contributors.
+
+---
+## Contributions by team member
+
+- **Maríajosé Argote**: core pipeline and preprocessing, packaging, tests.
+- **María Victoria Suriel**: feature engineering and tests.
+- **Elvis Teodoro Casco Alfaro**: documentation and examples, batch client, API examples, and test additions.
+
+---
+
+## How We Organised As A Team
+
+- Roles (example):
+  - Maintainer: merges PRs, manages releases
+  - Feature owner: implements and tests a feature
+  - Reviewer: reviews PRs and runs local tests
+- Communication: use commit messages, PR descriptions, and small focused PRs.
+- Use issues to track bugs + feature requests, link PRs to issues.
+
+---
+
+## Pipeline Walkthrough — High Level
+
+```mermaid
+flowchart LR
+  A[Raw data: data/WineQT.csv] --> B[Preprocessing: wine_predict.preprocessing]
+  B --> C[Feature engineering: wine_predict.features]
+  C --> D[Model training: wine_predict.pipeline]
+  D --> E[Saved artifacts: api/models/*.pkl]
+  E --> F[Serving: api/api_fastapi.py (uvicorn)]
+  F --> G[Clients: scripts/batch_predict_api.py, notebooks/demo_pipeline.ipynb]
+```
+
+---
+
+## Data & Preprocessing
+
+- Source: `data/WineQT.csv` (tabular CSV). Ensure consistent schemas.
+- Preprocessing is implemented in `wine_predict.preprocessing`:
+  - Missing-value handling, scaling (scalers.py), and pipeline objects.
+  - Preprocessor is saved and versioned alongside model artifacts.
+
+---
+
+## Features & Engineering
+
+- `wine_predict.features` defines reusable feature extractors and the final feature order.
+- Feature names are listed in `api/models/feature_names.txt` so serving and clients agree.
+- Keep features deterministic and backwards-compatible.
+
+---
+
+## Model Training & Evaluation
+
+- `wine_predict.pipeline` contains training logic and a `run_full_pipeline()` helper.
+- `train_model.py` CLI supports training and optional hyperparameter tuning.
+- Trained artifacts: `wine_classifier.pkl` + `preprocessor.pkl` placed under `api/models`.
+- Tests and evaluation scripts ensure model metrics meet acceptance criteria.
+
+---
+
+## Serving & API
+
+- FastAPI app at `api/api_fastapi.py` exposes:
+  - `GET /health` — health check
+  - `GET /models` — loaded models and feature names
+  - `POST /predict` — single-sample predict (JSON body)
+  - `POST /predict/batch` — batch predict (JSON list)
+  - `POST /predict/file` — accepts file uploads or JSON bodies
+- Server entry: `uvicorn api.api_fastapi:app --host 127.0.0.1 --port 8000`
+
+---
+
+## Clients & Examples
+
+- Interactive examples in `notebooks/demo_pipeline.ipynb` — PowerShell, curl, Python `requests`.
+- Batch client: `scripts/batch_predict_api.py` (supports timeout, chunking recommended for large files).
+- Tests: `tests/test_API.py` exercises endpoints; run `pytest -q` from project root.
+
+---
+
+## Repository Architecture (folders)
+
+- `api/` — FastAPI app and model artifacts
+- `wine_predict/` — core library: `pipeline.py`, `preprocessing/`, `features/`
+- `notebooks/` — demos and how-tos
+- `scripts/` — supporting scripts (batch client)
+- `tests/` — unit/integration tests
+- root files: `train_model.py`, `pyproject.toml`, `Requirements.txt`
+
+---
+
+## Onboarding Checklist (for a new member)
+
+1. Clone the repo and checkout the feature branch if referenced:
+
+```bash
+git clone https://github.com/majoargote/Computing_final.git
+cd Computing_final
+# Example:
+git checkout ElvisCasco
+```
+
+2. Create & activate a virtual environment (Windows PowerShell example):
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r Requirements.txt
+```
+
+---
+
+3. Run unit tests:
+
+```powershell
+pytest -q
+```
+
+4. Start the API locally and try a sample request (Health and `/predict`):
+
+```powershell
+uvicorn api.api_fastapi:app --reload
+# in another shell:
+Invoke-RestMethod -Uri http://127.0.0.1:8000/health -Method GET
+```
+
+5. Make a small change (follow branch naming rules), add tests, push branch, and open a PR.
+
+---
+
+## Contribution Guidelines — Practical Tips
+
+- Keep changes small and focused.
+- Add tests for new functionality (unit + small integration where appropriate).
+- Use the `api/models/feature_names.txt` to validate feature ordering when adding features.
+- When modifying the pipeline, run `train_model.py` locally and save artifacts for the API.
+
+## Q&A / Next Steps
+
+- Next steps: document contribution guide in `CONTRIBUTING.md`, add CI checks for tests and linting, and add more end-to-end tests.

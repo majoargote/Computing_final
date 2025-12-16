@@ -14,6 +14,7 @@ dependencies = [
     "numpy>=2.3.5",
     "pandas>=2.3.3",
     "pytest>=9.0.2",
+    "record>=4.1",
     "scikit-learn>=1.8.0",
     "seaborn>=0.13.2",
     "setuptools>=80.9.0",
