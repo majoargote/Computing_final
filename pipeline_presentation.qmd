@@ -33,22 +33,23 @@ format:
   - Give a reproducible onboarding checklist for new contributors.
 
 ---
-## Contributions by team member
-
-- **Maríajosé Argote**: core pipeline and preprocessing, packaging, tests.
-- **María Victoria Suriel**: feature engineering and tests.
-- **Elvis Teodoro Casco Alfaro**: documentation and examples, batch client, API examples, and test additions.
-
----
 
 ## How We Organised As A Team
 
-- Roles (example):
-  - Maintainer: merges PRs, manages releases
-  - Feature owner: implements and tests a feature
-  - Reviewer: reviews PRs and runs local tests
-- Communication: use commit messages, PR descriptions, and small focused PRs.
-- Use issues to track bugs + feature requests, link PRs to issues.
+- Roles:
+  - Setup owner: creates the structure, organizes team, and leads initial steps
+  - Feature owner: implements and tests features
+  - API owner: builds on functions from previous work and leads end to end API creation
+- Communication and collaboration: emphasized commit messages, PR descriptions, and small focused PRs.
+- We regrouped via WhatsApp to test code worked for each of us and tackle any rework as a team
+
+---
+
+## Contributions by team member
+
+- **Maríajosé Argote**: initial setup, core pipeline and preprocessing, packaging, tests.
+- **María Victoria Suriel**: feature engineering and tests.
+- **Elvis Teodoro Casco Alfaro**: documentation and examples, batch client, API examples, and test additions.
 
 ---
 
