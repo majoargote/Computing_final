@@ -1,5 +1,11 @@
 # Computing_final
 
+Authors:
+
+- Mariajosé Argote
+- María Victoria Suriel
+- Elvis Casco
+
 This repository contains a pipeline and API for predicting Portuguese wine quality.
 
 ## Quick start
