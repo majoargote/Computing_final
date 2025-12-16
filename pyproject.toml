@@ -9,6 +9,7 @@ dependencies = [
     "asttokens>=3.0.1",
     "base>=0.0.0",
     "comm>=0.2.3",
+    "fastapi>=0.124.4",
     "matplotlib>=3.10.8",
     "numpy>=2.3.5",
     "pandas>=2.3.3",
@@ -16,4 +17,5 @@ dependencies = [
     "scikit-learn>=1.8.0",
     "seaborn>=0.13.2",
     "setuptools>=80.9.0",
+    "uvicorn>=0.38.0",
 ]
