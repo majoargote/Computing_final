@@ -1,5 +1,11 @@
 # Computing_final
 
+Authors:
+
+- Mariajosé Argote
+- María Victoria Suriel
+- Elvis Casco
+
 This repository contains a pipeline and API for predicting Portuguese wine quality.
 
 ## Quick start
@@ -40,7 +46,7 @@ PowerShell (single sample):
 Invoke-RestMethod -Uri http://127.0.0.1:8000/predict -Method POST -Body (ConvertTo-Json @{ model = 'rf'; features = @{ fixed_acidity = 7.4; volatile_acidity = 0.7; citric_acid = 0.0; residual_sugar = 1.9; chlorides = 0.076; free_sulfur_dioxide = 11.0; total_sulfur_dioxide = 34.0; density = 0.9978; pH = 3.51; sulphates = 0.56; alcohol = 9.4 } }) -ContentType 'application/json'
 ```
 
-curl (single sample):
+curl - using git (single sample):
 
 ```
 curl -X POST "http://127.0.0.1:8000/predict" -H "Content-Type: application/json" -d '{"model":"rf","features":{"fixed_acidity":7.4,"volatile_acidity":0.7,"citric_acid":0.0,"residual_sugar":1.9,"chlorides":0.076,"free_sulfur_dioxide":11.0,"total_sulfur_dioxide":34.0,"density":0.9978,"pH":3.51,"sulphates":0.56,"alcohol":9.4}}'

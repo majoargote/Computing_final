@@ -84,6 +84,16 @@ flowchart LR
 
 ---
 
+## Features & Engineering
+
+- Chemical Ratios: `acidity_ratio` ; `sulfur_ratio`
+- Interaction Features: `alcohol_ph` ; `alcohol_sulphates`
+- Domain Features: `preservation_score` ; `balance_score`
+- Statistical Features: `alcohol_percentile` ; `sulphates_percentile`
+- Polynomial Features: `alcohol_squared` ; `sulphates_squared`
+
+---
+
 ## Model Training & Evaluation
 
 - `wine_predict.pipeline` contains training logic and a `run_full_pipeline()` helper.
