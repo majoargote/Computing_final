@@ -51,7 +51,7 @@ class DomainFeatures:
         )
 
         # balance_score = (citric_acid + fixed_acidity) / volatile_acidity
-        # usamos _EPS para evitar division por cero
+        
         X_new["balance_score"] = (
             (X_new["citric_acid"] + X_new["fixed_acidity"])
             / (X_new["volatile_acidity"] + _EPS)
